@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/bootstrap";
+
+$blue_but_red: #ff4411;
+
+.poulet {
+    color: $blue_but_red;
+
+    span {
+        background-color: $blue_but_red;
+        color:#fff;
+    }
+}
