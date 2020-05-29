@@ -1,12 +1,8 @@
 # Stage 0, build using node
-FROM node:alpine AS build
+FROM node:buster-slim AS build
 
-RUN \
-  apk add --no-cache python make g++ && \
-  apk add vips-dev fftw-dev --update-cache \
-  --repository http://dl-3.alpinelinux.org/alpine/edge/community \
-  --repository http://dl-3.alpinelinux.org/alpine/edge/main \
-  && rm -fR /var/cache/apk/*
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends gcc build-essential libgl1
 
 RUN npm install -g gatsby-cli
 
