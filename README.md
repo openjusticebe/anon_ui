@@ -12,5 +12,5 @@ L'interface repose sur Gatsby/React, et après clonage peut être démarré comm
 > npm install
 > gatsby develop
 # Lancer en utilisant docker
-> docker build -t "ui" ./  && docker run --rm -it ui -p 80:80
+> docker build -t "ui" ./  && docker run --rm -it -p 80:80 ui 
 ```

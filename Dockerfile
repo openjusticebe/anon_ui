@@ -21,12 +21,11 @@ RUN gatsby build
 FROM nginx:alpine as serve
 
 COPY --from=build /workdir/public /usr/share/nginx/html
-COPY ./misc/default.conf /etc/nginx/conf.d/default.conf
+COPY ./misc/default.conf /etc/nginx/nginx.conf
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 EXPOSE 80
 STOPSIGNAL SIGTERM
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
