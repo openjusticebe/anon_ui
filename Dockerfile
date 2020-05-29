@@ -2,7 +2,7 @@
 FROM node:buster-slim AS build
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc build-essential libgl1
+    && apt-get install -y --no-install-recommends gcc build-essential
 
 RUN npm install -g gatsby-cli
 
