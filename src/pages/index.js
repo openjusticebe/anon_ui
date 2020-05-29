@@ -8,10 +8,11 @@ import "../styles/style.scss"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 import { FaBeer } from 'react-icons/fa';
+
+const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
 
 class Editor extends React.Component {
     constructor(props) {
