@@ -1,12 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
 
-$blue_but_red: #ff4411;
+$main_color: #663399;
 
-.poulet {
-    color: $blue_but_red;
+.result {
+    border: 1px solid $main_color;
+    padding: 1rem;
+}
 
-    span {
-        background-color: $blue_but_red;
-        color:#fff;
-    }
+h2 {
+    font-size:1.3em;
 }
