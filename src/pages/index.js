@@ -1,16 +1,16 @@
-import React, {useState} from "react"
-import { Link } from "gatsby"
+import React from "react";
+// import { Link } from "gatsby";
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
-import "../styles/style.scss"
+import Layout from "../components/layout";
+// import Image from "../components/image";
+import SEO from "../components/seo";
+import "../styles/style.scss";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import 'react-quill/dist/quill.snow.css';
 
-import { FaBeer } from 'react-icons/fa';
+// import { FaBeer } from 'react-icons/fa';
 
 const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
 
@@ -67,27 +67,44 @@ class IndexPage extends React.Component {
         }
 
         // Get api response
-        fetch(`https://anon-api.openjustice.be/run`, {
-            method: 'post',
-            body: JSON.stringify(query)
-            }).then(response => response.json())
+        // fetch(`https://anon-api.openjustice.be/run`, {
+        console.log(query);
+        fetch(`${process.env.GATSBY_API_URL}/run`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(query),
+            }).then(response => {console.log(response); return response.json()})
            .then(resultData => {
                 console.log('api response', resultData);
                 this.setState({res_text: {__html: resultData.text}});
-                if (resultData.log && resultData.log.lines)
-                    this.setState({log_text: {__html: resultData.log.lines}});
+                if ('error' in resultData.log)
+                    this.setState({log_text: {__html: resultData.log.error}});
+                else if ('lines' in resultData.log)
+                    this.setState({log_text: {__html: this.logDisplay(resultData.log.lines)}});
             });
+    }
+
+    logDisplay(loglines) {
+        console.log(loglines);
+        return loglines.join("\n<br />");
     }
 
     checkAnonType(event) {
         const el = event.currentTarget;
         if (el.checked) {
+            let params = '{}';
+            if (el.id === 'anon_etaamb') {
+                params = JSON.stringify({'lang': 'french'});
+            }
             this.setState({
-                anon_types:  this.state.anon_types.filter(val => val !== el.id).concat([el.id])
+                anon_types:  this.state.anon_types.filter(val => val.id !== el.id).concat([{'id': el.id, 'params': params}])
             })
         } else {
             this.setState({
-                anon_types: this.state.anon_types.filter(val => val !== el.id)
+                anon_types: this.state.anon_types.filter(val => val.id !== el.id)
             })
         }
     }
@@ -114,7 +131,8 @@ class IndexPage extends React.Component {
             <Editor value={ this.state.text } onChange={ this.handleTextChange }/>
             <h2>2) Options d'anonymisation</h2>
             <Form onSubmit={ this.handleSubmit }>
-              <Form.Check type="checkbox" id="test_anon" onChange={ this.checkAnonType } label="Test - renvoi du texte à l'identique" />
+              <Form.Check type="checkbox" id="anon_test" onChange={ this.checkAnonType } label="Test - renvoi du texte à l'identique" />
+              <Form.Check type="checkbox" id="anon_etaamb" onChange={ this.checkAnonType } label="Anon_etaamb - module d'anonymisation d'etaamb.be" />
               <br />
               <Button variant="primary" type="submit">
                 Envoi

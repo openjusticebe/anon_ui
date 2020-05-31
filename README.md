@@ -11,6 +11,10 @@ L'interface repose sur Gatsby/React, et après clonage peut être démarré comm
 # Lancer le serveur local
 > npm install
 > gatsby develop
+```
+
+Il peut également être lancé sous docker:
+```bash
 # Lancer en utilisant docker
 > docker build -t "ui" ./  && docker run --rm -it -p 80:80 ui 
 ```
