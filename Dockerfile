@@ -14,6 +14,7 @@ RUN npm install
 
 COPY ./src ./src
 COPY gatsby* ./
+COPY .env.* ./
 RUN gatsby build
 
 
