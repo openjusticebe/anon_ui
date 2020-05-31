@@ -35,7 +35,7 @@ class IndexPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'poulet',
+            text: "Thorgan Hazard était titulaire tandis qu'Axel Witsel prenait place sur le banc. En l'absence du buteur norvégien Erling Haaland, Thorgan Hazard était aligné en attaque. Le Diable Rouge plantait le premier but de la rencontre à la 54e minute, en exploitant un service d'Emre Can pour inscrire son 7e but.",
             anon_types: [],
             res_text: {__html: '(Zone résultat)' },
             log_text: {__html: '' },
@@ -53,7 +53,6 @@ class IndexPage extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const form = event.currentTarget;
 
         const query = {
             '_v' : 1,
