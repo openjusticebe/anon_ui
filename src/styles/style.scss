@@ -5,12 +5,19 @@ $main_color: #663399;
 .result {
     border: 1px solid $main_color;
     padding: 1rem;
+    
+    .anonymized {
+        background-color:#000;
+        color:#000;
+    }
 }
 
 .log {
     background-color:#111;
     color:#ccc;
     font-family:'Lucida Console', monospace;
+    font-size:.8em;
+    padding-left:.3rem;
 }
 
 h2 {

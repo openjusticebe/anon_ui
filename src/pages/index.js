@@ -26,7 +26,7 @@ class Editor extends React.Component {
 
     render() {
         return (
-            <ReactQuill theme="snow" value={ this.props.value } onChange={ this.props.onChange } style={{height: "50rem", marginBottom: "5rem"}} />
+            <ReactQuill theme="snow" value={ this.props.value } onChange={ this.props.onChange } style={{height: "25rem", marginBottom: "5rem"}} />
         )
     }
 }
@@ -54,8 +54,6 @@ class IndexPage extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const form = event.currentTarget;
-        console.log(form.elements);
-        console.log(this.state.text);
 
         const query = {
             '_v' : 1,
@@ -68,7 +66,6 @@ class IndexPage extends React.Component {
 
         // Get api response
         // fetch(`https://anon-api.openjustice.be/run`, {
-        console.log(query);
         fetch(`${process.env.GATSBY_API_URL}/run`, {
             method: 'POST',
             headers: {
@@ -76,9 +73,8 @@ class IndexPage extends React.Component {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(query),
-            }).then(response => {console.log(response); return response.json()})
+            }).then(response => response.json())
            .then(resultData => {
-                console.log('api response', resultData);
                 this.setState({res_text: {__html: resultData.text}});
                 if ('error' in resultData.log)
                     this.setState({log_text: {__html: resultData.log.error}});
@@ -88,7 +84,6 @@ class IndexPage extends React.Component {
     }
 
     logDisplay(loglines) {
-        console.log(loglines);
         return loglines.join("\n<br />");
     }
 
@@ -122,7 +117,7 @@ class IndexPage extends React.Component {
                     <ol>
                         <li>Copiez-collez le texte à anonymiser / dépersonaliser ci-dessous</li>
                         <li>Choissisez un ou plusieurs algorithmes dans la liste et appyez sur "Envoi"</li>
-                        <li>Le résultat apparaît</li>
+                        <li>Le résultat s'affiche</li>
                     </ol>
                 </div>
             </div>

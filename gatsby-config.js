@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Depersonalization Testing Service`,
+    title: `Anonymization Testing Service`,
     description: `Test depersonalization algorithms and techniques`,
     author: `@pieterjan_m`,
   },
