@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
+          maxWidth: 1140,
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
@@ -38,6 +38,8 @@ const Layout = ({ children }) => {
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
+          {` | `}
+          <a href="https://openjustice.be">Openjustice.be</a>
         </footer>
       </div>
     </>
