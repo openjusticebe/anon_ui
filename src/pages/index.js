@@ -14,6 +14,18 @@ import 'react-quill/dist/quill.snow.css';
 
 const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
 
+const TextExample = `
+<p>
+Mr Coucke, qui a annoncé jeudi son retrait de la présidence du RSC Anderlecht, a transformé ses prêts au club en capital afin d'assainir le club sur le plan financier et en augmenter son capital de 50 millions d'euros.
+</p>
+<p>
+Un procédé qui pose question vis-a-vis du Fair-play financier mis en place par l'UEFA en mai 2010. "Si ce montant-là est nécessaire pour couvrir les pertes du club, Anderlecht pourrait contrevenir aux règles du Fair-play financier", a expliqué l'économiste du sport Thomas Peeters au quotidien néerlandophone Het Laatste Nieuws jeudi. "Ces 50 millions ne doivent pas être considérés comme des 'revenus' et ne doivent pas être utilisés pour respecter la règle du seuil de rentabilité qui fait partie des règles du Fair-play financier de l'UEFA. Le fait que ce montant provienne directement des actionnaires interdit au club d'utiliser cet argent pour payer le salaire des joueurs ou pour effectuer des transferts. En revanche, l'UEFA permet d'investir ce montant dans des opérations pour les jeunes ou de co-financer la construction d'un nouveau stade".
+</p>
+<p>
+Le CEO d'Anderlecht, Karel Van Eetvelt, ne se dit "pas inquiet": "C'est une observation qui a tout son sens dans des circonstances normales, mais ce ne sont pas des circonstances normales. L'UEFA, la FIFA et la Pro League ont annoncé que les règles entourant le Fair-play financier pour la saison prochaine seraient assouplies à cause de la crise du coronavirus. Nous ne sommes donc pas inquiets".
+</p>
+`
+
 class Editor extends React.Component {
     constructor(props) {
         super(props);
@@ -35,7 +47,7 @@ class IndexPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: "Thorgan Hazard était titulaire tandis qu'Axel Witsel prenait place sur le banc. En l'absence du buteur norvégien Erling Haaland, Thorgan Hazard était aligné en attaque. Le Diable Rouge plantait le premier but de la rencontre à la 54e minute, en exploitant un service d'Emre Can pour inscrire son 7e but.",
+            text: TextExample,
             anon_types: [],
             res_text: {__html: '(Zone résultat)' },
             log_text: {__html: '' },
