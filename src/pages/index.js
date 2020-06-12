@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "gatsby";
+import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 // import Image from "../components/image";
@@ -26,6 +26,20 @@ Le CEO d'Anderlecht, Karel Van Eetvelt, ne se dit "pas inquiet": "C'est une obse
 </p>
 `
 
+export const query = graphql`
+query {
+    api {
+        algorithms {
+            id
+            params
+            available
+            description
+            url
+        }
+    }
+}
+`
+
 class Editor extends React.Component {
     constructor(props) {
         super(props);
@@ -43,6 +57,30 @@ class Editor extends React.Component {
     }
 }
 
+const AlgoFormList = ({ onChange, list}) => (
+    <div>
+        {list.map(algo => 
+            <div className="mb-4">
+                <h5 className="mb-0">{ algo.id }</h5>
+                <div>
+                    { algo.description }
+                    { algo.url !== "" 
+                        ? <span> - <a href={ algo.url }>en savoir plus</a></span>
+                        : ''
+                    }
+                </div>
+                <Form.Check 
+                    ype="checkbox"
+                    id={ algo.id }
+                    onChange={ onChange }
+                    label="Appliquer cet algorithme"
+                    disabled={ ! algo.available }
+                />
+            </div>
+        )}
+    </div>
+);
+
 class IndexPage extends React.Component {
     constructor(props) {
         super(props);
@@ -52,6 +90,7 @@ class IndexPage extends React.Component {
             res_text: {__html: '(Zone résultat)' },
             log_text: {__html: '' },
         };
+        this.algos = props.data.api.algorithms;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
         this.checkAnonType = this.checkAnonType.bind(this);
@@ -133,11 +172,15 @@ class IndexPage extends React.Component {
                         <Editor value={ this.state.text } onChange={ this.handleTextChange }/>
                     </div>
                     <div className="col-12 mb-5">
-                        <h2>2) Options d'anonymisation</h2>
+                        <h2>2) Algorithmes d'anonymisation</h2>
                         <Form onSubmit={ this.handleSubmit }>
+
+                          <AlgoFormList onChange = { this.checkAnonType } list = { this.algos } />
+                          { /*
                           <Form.Check type="checkbox" id="anon_test" onChange={ this.checkAnonType } label="Test - renvoi du texte à l'identique" />
                           <Form.Check type="checkbox" id="anon_etaamb" onChange={ this.checkAnonType } label="Anon_etaamb - module d'anonymisation d'etaamb.be" />
                           <Form.Check type="checkbox" id="anon_trazor" onChange={ this.checkAnonType } label="Anon_trazor - module de pseudonymisation" />
+                          */ }
                           <br />
                           <Button variant="primary" type="submit">
                             Envoi

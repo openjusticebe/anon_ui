@@ -1,3 +1,5 @@
+let env = process.env.NODE_ENV || 'development';
+require('dotenv').config({path: `./.env.${env}`});
 module.exports = {
   siteMetadata: {
     title: `Banc de test Anonymisation`,
@@ -11,6 +13,16 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "query",
+        fieldName: "api",
+        url: `http://localhost:5000/gql/`,
+        //url: `${process.env.GATSBY_API_URL}/gql/`,
+        refetchInterval: 60,
       },
     },
     `gatsby-transformer-sharp`,
