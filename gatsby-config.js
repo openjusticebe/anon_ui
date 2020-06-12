@@ -20,8 +20,9 @@ module.exports = {
       options: {
         typeName: "query",
         fieldName: "api",
-        //url: `http://localhost:5000/gql/`,
-        url: `${process.env.GATSBY_API_URL}/gql/`,
+        //url: `http://localhost:5000/gql`,
+        // url: `https://anon-api.openjustice.be/gql`,
+        url: `${process.env.GATSBY_API_URL}/gql`,
         refetchInterval: 60,
       },
     },
