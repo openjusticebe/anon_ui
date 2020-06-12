@@ -26,6 +26,7 @@ Le CEO d'Anderlecht, Karel Van Eetvelt, ne se dit "pas inquiet": "C'est une obse
 </p>
 `
 
+// v1
 export const query = graphql`
 {
     api {
