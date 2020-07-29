@@ -2,7 +2,7 @@ let env = process.env.NODE_ENV || 'development';
 require('dotenv').config({path: `./.env.${env}`});
 module.exports = {
   siteMetadata: {
-    title: `Banc de test Anonymisation`,
+    title: `Banc de test OpenJustice.be`,
     description: `Test depersonalization algorithms and techniques`,
     author: `@pieterjan_m`,
   },
