@@ -9,13 +9,13 @@ RUN npm install -g gatsby-cli
 RUN mkdir /workdir
 WORKDIR /workdir
 
-COPY package* ./
-RUN npm install
+COPY package.json yarn.lock ./
+RUN yarn
 
 COPY ./src ./src
 COPY gatsby* ./
 COPY .env.* ./
-RUN gatsby build
+RUN yarn build
 
 
 # Stage 1, Serve compiled pages with nginx
