@@ -62,7 +62,7 @@ class UploadPage extends React.Component {
         payload.append('rawFile', files[0]);
         console.log('Payload:', payload);
 
-        fetch('http://10.0.6.249:5000/extract', {
+        fetch(`${process.env.GATSBY_API_URL}/extract`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

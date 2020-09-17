@@ -1,28 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import 'react-quill/dist/quill.snow.css';
 
 const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
 
-class Editor extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
+export default ({value, update, onChange, style}) => {
+    const editorRef = React.createRef();
 
-    handleChange(text) {
-        this.props.onChange(text);
-    }
+    useEffect(() => { 
+        editorRef.current.getEditor().setText(update);
+    }, [update]);
 
-    render() {
-        return (
+    return (
+        <div style={{ height: "100%" }}>
             <ReactQuill
                 theme="snow"
-                value={ this.props.value }
-                onChange={ this.props.onChange }
-                style= { this.props.style }
+                ref= { editorRef }
+                value={ value }
+                onChange={ onChange }
+                style= { style }
             />
-        )
-    }
+        </div>
+    )
 }
 
-export default Editor

@@ -2,7 +2,7 @@ let env = process.env.NODE_ENV || 'development';
 require('dotenv').config({path: `./.env.${env}`});
 module.exports = {
   siteMetadata: {
-    title: `Banc de test OpenJustice.be`,
+    title: `OpenJustice.be // test bench`,
     description: `Test depersonalization algorithms and techniques`,
     author: `@pieterjan_m`,
   },
@@ -34,8 +34,8 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#2d4059`,
+        theme_color: `#2d4059`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
@@ -44,5 +44,24 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Major Mono Display`,
+            variants: [`400`]
+          },
+          {
+            family: `Roboto Mono`,
+            variants: [`400`, `700`]
+          },
+          {
+            family: `Roboto`,
+            variants: [`thin`, `light`]
+          },
+        ],
+      },
+    },
   ],
 }
