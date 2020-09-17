@@ -7,6 +7,7 @@ export default ({value, update, onChange, style}) => {
     const editorRef = React.createRef();
 
     useEffect(() => { 
+        console.log('grabbing editor');
         editorRef.current.getEditor().setText(update);
     }, [update]);
 
